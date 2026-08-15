@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teste Rápido de Audição | Telex</title>
+<meta name="description" content="Responda algumas perguntas simples e descubra em 1 minuto se vale a pena avaliar sua audição. Teste gratuito.">
+
+<!-- Imagem exibida ao compartilhar o link (WhatsApp, Facebook, Instagram, etc) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Autoavaliação Auditiva Rápida | Telex">
+<meta property="og:description" content="Responda algumas perguntas simples e descubra em 1 minuto se vale a pena avaliar sua audição. Teste gratuito.">
+<meta property="og:image" content="https://SEU-DOMINIO-AQUI/telex-og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Autoavaliação Auditiva Rápida | Telex">
+<meta name="twitter:image" content="https://SEU-DOMINIO-AQUI/telex-og-image.png">
+<style>
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:#0B1F3A;
+    color:#E2E8F0;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+    line-height:1.5;
+  }
+  .wrap{
+    max-width:640px;
+    margin:0 auto;
+    padding:40px 24px 60px;
+    text-align:center;
+    position:relative;
+  }
+
+  /* ---------- Hero decorativo ---------- */
+  .hero{
+    position:relative;
+    padding-top:8px;
+    margin-bottom:8px;
+  }
+  .hero-glow{
+    position:absolute;
+    top:-60px;
+    left:50%;
+    transform:translateX(-50%);
+    width:520px;
+    height:340px;
+    background:radial-gradient(circle, rgba(62,207,207,.22) 0%, rgba(62,207,207,0) 70%);
+    pointer-events:none;
+    z-index:0;
+  }
+  .hero-waves{
+    position:absolute;
+    top:6px;
+    right:-6px;
+    display:flex;
+    align-items:center;
+    gap:3px;
+    opacity:.35;
+    z-index:0;
+  }
+  .hero-waves span{
+    display:block;
+    width:3px;
+    border-radius:2px;
+    background:#3ECFCF;
+    animation:wave-bob 1.6s ease-in-out infinite;
+  }
+  .hero-waves span:nth-child(1){height:10px; animation-delay:0s;}
+  .hero-waves span:nth-child(2){height:20px; animation-delay:.1s;}
+  .hero-waves span:nth-child(3){height:30px; animation-delay:.2s;}
+  .hero-waves span:nth-child(4){height:16px; animation-delay:.3s;}
+  .hero-waves span:nth-child(5){height:24px; animation-delay:.4s;}
+  @keyframes wave-bob{
+    0%,100%{transform:scaleY(1);}
+    50%{transform:scaleY(.45);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-waves span{animation:none;}
+  }
+
+  .badge{
+    position:relative;
+    z-index:1;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 18px;
+    border-radius:999px;
+    background:rgba(62,207,207,.1);
+    border:1px solid rgba(62,207,207,.35);
+    margin-bottom:22px;
+  }
+  .badge .ping{
+    position:relative;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#3ECFCF;
+    flex-shrink:0;
+  }
+  .badge .ping::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    background:#3ECFCF;
+    animation:ping 1.8s cubic-bezier(0,0,.2,1) infinite;
+  }
+  @keyframes ping{
+    0%{transform:scale(1); opacity:.7;}
+    75%,100%{transform:scale(2.8); opacity:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .badge .ping::after{animation:none;}
+  }
+  .logo{
+    font-family:Georgia,'Times New Roman',serif;
+    font-weight:700;
+    font-size:38px;
+    letter-spacing:.04em;
+    color:#FFFFFF;
+    margin-bottom:22px;
+  }
+  .eyebrow{
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:#3ECFCF;
+  }
+  h1{
+    font-family:Georgia,'Times New Roman',serif;
+    font-weight:700;
+    font-size:clamp(28px,6vw,38px);
+    line-height:1.28;
+    margin:0 0 22px;
+    color:#FFFFFF;
+    position:relative;
+    z-index:1;
+  }
+  h1 .accent{color:#3ECFCF;}
+  .lede{
+    color:#B8C4D6;
+    font-size:19px;
+    max-width:52ch;
+    margin:0 auto 28px;
+    position:relative;
+    z-index:1;
+  }
+
+  .trust-row{
+    position:relative;
+    z-index:1;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:36px;
+  }
+  .trust-row span{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:13px;
+    font-weight:600;
+    color:#B8C4D6;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    padding:7px 14px;
+    border-radius:999px;
+  }
+
+  .card{
+    background:linear-gradient(180deg,#EAF3F9,#F4F8FB);
+    border:2px solid #FFFFFF;
+    border-radius:20px;
+    padding:32px 24px 36px;
+    text-align:left;
+    position:relative;
+    overflow:hidden;
+  }
+  .card h2{
+    font-family:Georgia,'Times New Roman',serif;
+    font-weight:700;
+    font-size:25px;
+    color:#0B2545;
+    margin:0 0 12px;
+  }
+  .card .instrucao{
+    font-size:17px;
+    color:#475569;
+    margin:0 0 20px;
+  }
+  .card .instrucao strong{color:#1E293B;}
+
+  .progress-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:26px;
+  }
+  .progress-label{
+    font-size:13px;
+    font-weight:600;
+    color:#64748B;
+    white-space:nowrap;
+  }
+  .progress-track{
+    height:6px;
+    background:#D9E2EC;
+    border-radius:4px;
+    overflow:hidden;
+    flex:1;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:#1AA6A6;
+    border-radius:4px;
+    transition:width .35s ease;
+  }
+
+  /* ---------- Steps ---------- */
+  .steps{
+    position:relative;
+    min-height:220px;
+  }
+  .step{
+    display:none;
+    opacity:0;
+    transform:translateX(14px);
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .step.active{
+    display:block;
+    opacity:1;
+    transform:translateX(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .step{transition:none;}
+  }
+
+  .voltar{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    background:none;
+    border:none;
+    color:#64748B;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    padding:0;
+    margin-bottom:14px;
+  }
+  .voltar:hover{color:#0B2545;}
+
+  .pergunta-titulo{
+    margin:0 0 20px;
+    font-size:20px;
+    font-weight:600;
+    color:#1E293B;
+    line-height:1.35;
+  }
+
+  /* Age step: stacked full-width options */
+  .opcoes-coluna{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .opcoes-coluna button{
+    text-align:left;
+    padding:15px 18px;
+    border-radius:12px;
+    border:2px solid #CBD5E1;
+    background:#fff;
+    color:#334155;
+    font-size:16px;
+    font-weight:500;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .opcoes-coluna button:hover{
+    border-color:#1AA6A6;
+  }
+  .opcoes-coluna button.selecionado{
+    border-color:#0B2545;
+    background:#0B2545;
+    color:#fff;
+  }
+
+  /* Sim/Não step */
+  .opcoes-simnao{
+    display:flex;
+    gap:12px;
+  }
+  .opcoes-simnao button{
+    flex:1;
+    padding:18px;
+    border-radius:14px;
+    border:2px solid #CBD5E1;
+    background:#fff;
+    color:#94A3B8;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .opcoes-simnao button.sim.selecionado{
+    border-color:#15803D;
+    color:#15803D;
+    background:#F0FDF4;
+  }
+  .opcoes-simnao button.nao.selecionado{
+    border-color:#C2660D;
+    color:#C2660D;
+    background:#FFF3E4;
+  }
+
+  /* Contact step */
+  .campo{
+    margin-bottom:16px;
+  }
+  .campo label{
+    display:block;
+    font-size:14px;
+    font-weight:600;
+    color:#334155;
+    margin-bottom:6px;
+  }
+  .campo input{
+    width:100%;
+    padding:13px 14px;
+    border-radius:10px;
+    border:2px solid #CBD5E1;
+    font-size:16px;
+    font-family:inherit;
+    color:#1E293B;
+  }
+  .campo input:focus{
+    outline:none;
+    border-color:#1AA6A6;
+  }
+  #btnVerResultado{
+    width:100%;
+    margin-top:6px;
+    padding:16px;
+    background:#0B2545;
+    color:#fff;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  #btnVerResultado:disabled{
+    background:#CBD5E1;
+    color:#64748B;
+    cursor:not-allowed;
+  }
+  .contato-nota{
+    font-size:12.5px;
+    color:#94A3B8;
+    margin-top:10px;
+    text-align:center;
+  }
+
+  /* ---------- Result ---------- */
+  #resultado{
+    display:none;
+    margin-top:24px;
+    padding:26px 22px;
+    border-radius:14px;
+    text-align:center;
+    box-shadow:0 1px 3px rgba(11,37,69,.06);
+    opacity:0;
+    transform:translateY(8px);
+    transition:opacity .4s ease, transform .4s ease, background .2s ease;
+  }
+  #resultado.show{
+    display:block;
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    #resultado{transition:none;}
+  }
+  #resultado.alerta{
+    background:#FEF9E7;
+    border:1px solid #F5D678;
+  }
+  #resultado.ok{
+    background:#F0FDF4;
+    border:1px solid #A7E3B4;
+  }
+  #resultado h3{
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:22px;
+    color:#0B2545;
+    margin:0 0 10px;
+  }
+  #resultado.alerta h3{color:#8A6100;}
+  #resultado.ok h3{color:#166534;}
+  #resultado p{
+    font-size:15px;
+    color:#475569;
+    margin:0 0 20px;
+  }
+  .cta{
+    display:inline-block;
+    background:#0B2545;
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:16px;
+    padding:15px 32px;
+    border-radius:12px;
+    animation:pulse-cta 1.8s ease-in-out infinite;
+  }
+  .cta:hover{background:#0E2E57;}
+  @keyframes pulse-cta{
+    0%,100%{box-shadow:0 0 0 0 rgba(11,37,69,.45);}
+    50%{box-shadow:0 0 0 12px rgba(11,37,69,0);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .cta{animation:none;}
+  }
+
+  .prova-social{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    margin-top:16px;
+    font-size:12.5px;
+    color:#64748B;
+  }
+  .prova-social .selo{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-weight:600;
+  }
+  .prova-social .selo svg{flex-shrink:0;}
+
+  footer{
+    margin-top:36px;
+    font-size:13px;
+    color:#8AA0BF;
+  }
+
+  @media (max-width:480px){
+    .opcoes-simnao{gap:8px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-waves">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="badge">
+      <span class="ping"></span>
+      <span class="eyebrow">Autoavaliação auditiva rápida</span>
+    </div>
+    <h1>Você pode ter perda auditiva <span class="accent">sem saber.</span></h1>
+    <p class="lede">Responda as perguntas abaixo e descubra na hora se vale a pena fazer uma avaliação com um especialista.</p>
+    <div class="trust-row">
+      <span>1 minuto</span>
+      <span>100% gratuito</span>
+      <span>Sem compromisso</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 id="cardTitulo">Teste rápido de audição</h2>
+    <p class="instrucao" id="cardInstrucao">Vamos começar com uma pergunta rápida:</p>
+
+    <div class="progress-row">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <span class="progress-label" id="progressLabel">1 de 8</span>
+    </div>
+
+    <div class="steps" id="steps">
+
+      <!-- Etapa 0: idade -->
+      <div class="step" data-step="0">
+        <p class="pergunta-titulo">Qual a sua faixa etária?</p>
+        <div class="opcoes-coluna" data-group="idade">
+          <button type="button" data-value="ate40">Até 40 anos</button>
+          <button type="button" data-value="41a60">41 a 60 anos</button>
+          <button type="button" data-value="61a75">61 a 75 anos</button>
+          <button type="button" data-value="acima75">Acima de 75 anos</button>
+        </div>
+      </div>
+
+      <!-- Etapas 1-6: perguntas sim/não -->
+      <div class="step" data-step="1">
+        <button type="button" class="voltar" data-back>‹ Voltar</button>
+        <p class="pergunta-titulo">Você pede frequentemente para as pessoas repetirem o que disseram?</p>
+        <div class="opcoes-simnao" data-group="q1">
+          <button type="button" class="sim" data-value="sim">Sim</button>
+          <button type="button" class="nao" data-value="nao">Não</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="2">
+        <button type="button" class="voltar" data-back>‹ Voltar</button>
+        <p class="pergunta-titulo">Aumenta o volume da TV mais do que outras pessoas ao redor precisam?</p>
+        <div class="opcoes-simnao" data-group="q2">
+          <button type="button" class="sim" data-value="sim">Sim</button>
+          <button type="button" class="nao" data-value="nao">Não</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="3">
+        <button type="button" class="voltar" data-back>‹ Voltar</button>
+        <p class="pergunta-titulo">Sente dificuldade em ouvir em ambientes com barulho (restaurantes, festas)?</p>
+        <div class="opcoes-simnao" data-group="q3">
+          <button type="button" class="sim" data-value="sim">Sim</button>
+          <button type="button" class="nao" data-value="nao">Não</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="4">
+        <button type="button" class="voltar" data-back>‹ Voltar</button>
+        <p class="pergunta-titulo">Em conversas em grupo, perde partes do que está sendo dito?</p>
+        <div class="opcoes-simnao" data-group="q4">
+          <button type="button" class="sim" data-value="sim">Sim</button>
+          <button type="button" class="nao" data-value="nao">Não</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="5">
+        <button type="button" class="voltar" data-back>‹ Voltar</button>
+        <p class="pergunta-titulo">Sente zumbido, chiado ou apito no ouvido com frequência?</p>
+        <div class="opcoes-simnao" data-group="q5">
+          <button type="button" class="sim" data-value="sim">Sim</button>
+          <button type="button" class="nao" data-value="nao">Não</button>
+        </div>
+      </div>
+
+      <div class="step" data-step="6">
+        <button type="button" class="voltar" data-back>‹ Voltar</button>
+        <p class="pergunta-titulo">Sente que as pessoas falam baixo demais ou "engolindo as palavras"?</p>
+        <div class="opcoes-simnao" data-group="q6">
+          <button type="button" class="sim" data-value="sim">Sim</button>
+          <button type="button" class="nao" data-value="nao">Não</button>
+        </div>
+      </div>
+
+      <!-- Etapa 7: contato -->
+      <div class="step" data-step="7">
+        <button type="button" class="voltar" data-back>‹ Voltar</button>
+        <p class="pergunta-titulo">Quase lá! Para onde enviamos o seu resultado?</p>
+        <div class="campo">
+          <label for="campoNome">Seu nome</label>
+          <input type="text" id="campoNome" placeholder="Como podemos te chamar?" autocomplete="name">
+        </div>
+        <button type="button" id="btnVerResultado" disabled>Ver meu resultado</button>
+        <p class="contato-nota">Usamos seu nome só para personalizar o resultado.</p>
+      </div>
+
+    </div>
+
+    <div id="resultado">
+      <h3 id="resultadoTitulo">Recomendamos uma avaliação</h3>
+      <p id="resultadoTexto">Suas respostas indicam sinais de possível perda auditiva. Na Telex, a avaliação é gratuita e sem compromisso.</p>
+      <a href="#" id="ctaWhats" class="cta" target="_blank" rel="noopener">Agendar avaliação agora</a>
+      <div class="prova-social">
+        <span class="selo">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Avaliação conduzida por fonoaudióloga responsável
+        </span>
+        <span>+2.400 pessoas já fizeram este teste</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>Telex Aparelhos Auditivos · Florianópolis, SC</footer>
+
+</div>
+
+<script>
+  const TOTAL_STEPS = 8; // idade + 6 perguntas + contato
+  const stepsEl = document.getElementById('steps');
+  const stepEls = [...stepsEl.querySelectorAll('.step')];
+  const progressFill = document.getElementById('progressFill');
+  const progressLabel = document.getElementById('progressLabel');
+  const cardInstrucao = document.getElementById('cardInstrucao');
+
+  const respostas = {}; // idade, q1..q6
+  let currentStep = 0;
+
+  function goToStep(index){
+    stepEls.forEach(s => s.classList.remove('active'));
+    const target = stepEls.find(s => Number(s.dataset.step) === index);
+    if (target) target.classList.add('active');
+    currentStep = index;
+
+    progressFill.style.width = ((index + 1) / TOTAL_STEPS * 100) + '%';
+    progressLabel.textContent = (index + 1) + ' de ' + TOTAL_STEPS;
+
+    cardInstrucao.textContent = index === 0
+      ? 'Vamos começar com uma pergunta rápida:'
+      : (index === 7 ? 'Falta pouco para o seu resultado.' : 'Marque a opção que combina com o seu dia a dia:');
+  }
+
+  function avancar(){
+    if (currentStep < TOTAL_STEPS - 1) {
+      setTimeout(() => goToStep(currentStep + 1), 280);
+    }
+  }
+
+  // Voltar
+  stepsEl.querySelectorAll('[data-back]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (currentStep > 0) goToStep(currentStep - 1);
+    });
+  });
+
+  // Etapa idade
+  stepsEl.querySelector('[data-group="idade"]').querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      stepsEl.querySelector('[data-group="idade"]').querySelectorAll('button').forEach(b => b.classList.remove('selecionado'));
+      btn.classList.add('selecionado');
+      respostas.idade = btn.dataset.value;
+      avancar();
+    });
+  });
+
+  // Etapas sim/não
+  for (let i = 1; i <= 6; i++){
+    const grupo = stepsEl.querySelector('[data-group="q' + i + '"]');
+    grupo.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        grupo.querySelectorAll('button').forEach(b => b.classList.remove('selecionado'));
+        btn.classList.add('selecionado');
+        respostas['q' + i] = btn.dataset.value;
+        avancar();
+      });
+    });
+  }
+
+  // Etapa contato
+  const campoNome = document.getElementById('campoNome');
+  const btnVerResultado = document.getElementById('btnVerResultado');
+
+  function validarContato(){
+    btnVerResultado.disabled = campoNome.value.trim().length < 2;
+  }
+  campoNome.addEventListener('input', validarContato);
+
+  btnVerResultado.addEventListener('click', mostrarResultado);
+
+  function countSim(){
+    return Object.keys(respostas).filter(k => k.startsWith('q') && respostas[k] === 'sim').length;
+  }
+
+  function mostrarResultado(){
+    const nome = campoNome.value.trim().split(' ')[0];
+    const nomeCap = nome.charAt(0).toUpperCase() + nome.slice(1);
+    const resultado = document.getElementById('resultado');
+    const resultadoTitulo = document.getElementById('resultadoTitulo');
+    const resultadoTexto = document.getElementById('resultadoTexto');
+    const ctaWhats = document.getElementById('ctaWhats');
+
+    let mensagemWhats;
+
+    if (countSim() >= 2) {
+      resultado.classList.add('alerta');
+      resultadoTitulo.textContent = nomeCap + ', recomendamos uma avaliação';
+      resultadoTexto.textContent = 'Suas respostas indicam sinais de possível perda auditiva. Na Telex, a avaliação é gratuita e sem compromisso.';
+      mensagemWhats = 'Olá! Meu nome é ' + nomeCap + '. Realizei o teste rápido de audição e minhas respostas indicaram sinais de possível perda auditiva. Gostaria de agendar minha avaliação gratuita com a fonoaudióloga.';
+    } else {
+      resultado.classList.add('ok');
+      resultadoTitulo.textContent = nomeCap + ', nenhum sinal relevante encontrado';
+      resultadoTexto.textContent = 'Suas respostas não indicam sinais significativos de perda auditiva. Ainda assim, uma avaliação preventiva é sempre bem-vinda.';
+      mensagemWhats = 'Olá! Meu nome é ' + nomeCap + '. Realizei o teste rápido de audição e gostaria de agendar uma avaliação preventiva gratuita com a fonoaudióloga.';
+    }
+
+    ctaWhats.href = 'https://wa.me/5548991769180?text=' + encodeURIComponent(mensagemWhats);
+
+    stepsEl.style.display = 'none';
+    document.querySelector('.progress-row').style.display = 'none';
+    document.getElementById('cardTitulo').textContent = 'Resultado do seu teste';
+    cardInstrucao.style.display = 'none';
+
+    resultado.classList.add('show');
+    setTimeout(() => {
+      resultado.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 150);
+  }
+
+  goToStep(0);
+</script>
+
+</body>
+</html>
